@@ -44,12 +44,12 @@
 
 # Installation
 
-package contains the following file structure:
+The package contains the following file structure:
 
-activenet/index.php
-activenet/composer.json
-activenet/src/activenetParser.php
-activenet/test/activenetParserTest.php
+- activenet/index.php
+- activenet/composer.json
+- activenet/src/activenetParser.php
+- activenet/test/activenetParserTest.php
 
 Move the zip file to your webroot and unzip this package, which will create the activenet directory and contain the file structure above
 ```
