@@ -42,9 +42,58 @@
      6) At this stage, all documents have imported and the report output is generated with renderedOutput
      7) You can also inspect the object of processed output with a method called outputObject
 
+# Installation
+
+package contains the following file structure:
+
+activenet/index.php
+activenet/composer.json
+activenet/src/activenetParser.php
+activenet/test/activenetParserTest.php
+
+Move the zip file to your webroot and unzip this package, which will create the activenet directory and contain the file structure above
+```
+cd /path/to/webroot;
+unzip activenet.zip;
+```
+Switch to the activenet directory
+```
+cd activenet;
+```
+
+Ensure Composer is installed.  If not, install it:
+```
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+
+Go into the activenet directory and install the dependencies (PHPUnit) using Composer 
+```
+php composer.phar install
+```
+
+Run the Unit and Integration tests to make sure everything passes and that the page is rendering successfully and is operational
+```
+phpunit --bootstrap vendor/autoload.php tests/activenetParserTest.php
+```
+
+If you see a screen similar to below then you know that the page is operating properly.
+```
+PHPUnit 7.3.3 by Sebastian Bergmann and contributors.
+
+.................................                                 33 / 33 (100%)
+
+Time: 577 ms, Memory: 10.00MB
+
+OK (33 tests, 41 assertions)
+```
+
+Now simply visit the url in a web browser: http://yourwebserver.com/activenet
+
+
  PHP Command Manifest: 
  explode, list, array, intval, strstr, trim, empty, count, print, is_string, is_array, isset, strlen, utf8_encode
  preg_match, preg_replace_callback, preg_replace, file_exists, file_get_contents, strtotime, header, headers_sent
 
- Execute Tests:
- phpunit --bootstrap vendor/autoload.php tests/activenetParserTest.php
