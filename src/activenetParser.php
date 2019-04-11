@@ -470,7 +470,7 @@ final class ActivenetParser {
                 header('Content-Type: text/plain; charset=utf-8);');
             }    
         }
-        return $this->output;
+        return utf8_encode($this->output);
     }
 }
 ?>
