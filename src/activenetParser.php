@@ -1,55 +1,5 @@
 <?php
 
-/**
-    Activenet File Parser v1.0.2 
-    ----------------------------
-    Build: April 10, 2019
-
-    Requirements: 
-    PHP7.1+ (configured with file_uploads=On, magic_quotes_gpc=On), PHPUnit7.3+
-    (Backwards compatible with PHP5.4+)
-    
-    Author: 
-    Hal Wong (hal@thinkflo.com)
-    
-    Description:
-    Processes one or many plain-text Brochure Export files from ActiveNet's Front Desk Web Application 
-    and provides a single, clean output in the original export format.
- 
-    Purpose: 
-    The Activenet export files are formatted for InDesign but contain many system-generated 
-    fields that requires manual parsing, manipulation and reformatting in order to be fit 
-    for publication.  This script automates this work; reformatting Date and Age fields using 
-    strict pattern matching, while combining and re-sorting from multiple source files to 
-    generated a unified output based in the original InDesign export format.
- 
-    Workflow Sequence:
-    - A File Upload Form is displayed when no File Uploads are detected via POST in displayUploadForm
-    - When a File Upload is sent via POST to this script, it processes it:
-        1) It loops through the $_FILES['documents'] array to handle a single or many attachment(s)
-        2) It parses each upload file directly from it's temp location without moving or touching them  
-           thus ensuring security and that the files are automatically destroyed once the script finishes
-        3) Each file is loaded as a string in ImportData
-            a) This parses the Section Title using extractTitleContent
-            b) and loops each Section through processActivityTypes
-        4) processActivityTypes loops through each section's activityTypes
-            a) building a Site listing for each activityType and sorted in processSites
-            b) and building a course listing for each activityType's Sites and sorted in processCourses
-        5) After importing, the schema of the document is mapped and each Section is run through TextProcessing
-            a) looping through each section's activityTypes to reformat the Age field in ageProcessing
-            b) then looping through each sites' courses and reformats the Date field in courseProcessing
-        6) At this stage, all documents have imported and the report output is generated with renderedOutput
-        7) You can also inspect the object of processed output with a method called outputObject
-
-    PHP Command Manifest: 
-    explode, list, array, intval, strstr, trim, empty, count, print, is_string, is_array, isset, strlen, utf8_encode
-    preg_match, preg_replace_callback, preg_replace, file_exists, file_get_contents, strtotime, header, headers_sent
-
-    Execute Tests:
-    phpunit --bootstrap vendor/autoload.php tests/activenetParserTest.php
-    
- **/
-
 final class ActivenetParser {
     private $document;
     private $documentType;
@@ -343,7 +293,7 @@ final class ActivenetParser {
         $extractedAge =  preg_replace_callback(
             "/(\d+)y (5|6)m 4w/",
             function ($matches) {
-                return intval($matches[1]+1)."½";
+                return intval($matches[1]+1).".5";
             },
             $extractedAge
         );
@@ -358,7 +308,7 @@ final class ActivenetParser {
         $ageReplace = array(
             "",
             "+",
-            "½",
+            ".5",
             "Under "
         );
 
@@ -430,8 +380,11 @@ final class ActivenetParser {
         }
 
         //Add Years Label
-        $yearRange = preg_match( "/(-\d{1,2}$)|(^\d{1,2}[+]$)|(\d{1,2}½$)|(^Under \d{1,2}$)/", $extractedAge, $yearRange);
+        $yearRange = preg_match( "/(-\d{1,2}$)|(^\d{1,2}[+]$)|(\d{1,2}[.]5$)|(^Under \d{1,2}$)/", $extractedAge, $yearRange);
         if (!empty($yearRange)) $extractedAge .= " yrs";
+
+        //Add spaced dash
+        $extractedAge = preg_replace("/-/", " - ", $extractedAge);
 
         return preg_replace("/[<]ParaStyle[:]BrochureSubSection[>](.*?)[<]0x2003[>]/", "<ParaStyle:BrochureSubSection".$errorCondition.">".$extractedAge."<0x2003>", $content);
     }
@@ -439,13 +392,8 @@ final class ActivenetParser {
     public function courseProcessing($content) {
         $processedCourse = $content;
 
-        //TODO: Minimize these patterns. Added duplicate entries for Single and Double Digit Date detection because using 
-        //a range of digit repetition values, alternations of digits, or using the optional token in this positive lookahead
-        //causes the preg_replace to fail. Possible bug in PHP's regular expression engine.
         $findDateTabs = array(
-            "/(?<=(Mon|Tue|Wed|Thu|Fri|Sat|Sun))\t/", //Tab after Day of Week
-            "/(?<=(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[ ]\d{1})\t/", //Tab after Single Digit Date
-            "/(?<=(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[ ]\d{2})\t/", //Tab after Double Digit Date 
+            "/(?<=(Mon|Tue|Wed|Thu|Fri|Sat|Sun))\t/" //Tab after Day of Week
         );
         
         $processedCourse = preg_replace( $findDateTabs, " ", $processedCourse );
@@ -522,7 +470,7 @@ final class ActivenetParser {
                 header('Content-Type: text/plain; charset=utf-8);');
             }    
         }
-        return utf8_encode($this->output);
+        return $this->output;
     }
 }
 ?>

@@ -124,7 +124,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingAtLeastDateRange(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>7-10 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 7 but less than 11<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>7 - 10 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 7 but less than 11<0x2003>"));
     }
     
     /**
@@ -164,7 +164,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingLessThanAndHalfYear(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>Under 4½ yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>Less than 4 1/2<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>Under 4.5 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>Less than 4 1/2<0x2003>"));
     }
 
     /**
@@ -180,7 +180,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingDateRangeWithMonths(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>12-14 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 11y 9m but less than 15<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>12 - 14 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 11y 9m but less than 15<0x2003>"));
     }
 
     /**
@@ -188,7 +188,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingStripMonths(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>12-15 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 12 but less than 15y 3m<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>12 - 15 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 12 but less than 15y 3m<0x2003>"));
     }
 
     /**
@@ -196,7 +196,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingLessThan2(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>1½-2½ yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 1 1/2 but less than 2y 6m 4w<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>1.5 - 2.5 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 1 1/2 but less than 2y 6m 4w<0x2003>"));
     }
 
     /**
@@ -204,7 +204,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingStripWeeks(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>3-5 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 3 but less than 6y 4w<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>3 - 5 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 3 but less than 6y 4w<0x2003>"));
     }
 
     /**
@@ -220,7 +220,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingBabyMonths(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>2m-11m<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 2m but less than 11m<0x2003>"));   
+        $this->assertContains("<ParaStyle:BrochureSubSection>2m - 11m<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 2m but less than 11m<0x2003>"));   
     }
 
     /**
@@ -228,7 +228,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingBabyMonthsAndYears(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>3m-14m<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 3m but less than 1y 2m<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>3m - 14m<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 3m but less than 1y 2m<0x2003>"));
     }
 
     /**
@@ -236,7 +236,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingOverTwoYearsWithMonths(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>1-2 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 1 but less than 2y 1m<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>1 - 2 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 1 but less than 2y 1m<0x2003>"));
     }
 
     /**
@@ -244,7 +244,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingBabyMonthsAndYearsRange(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>22m-4 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 1y 10m but less than 5<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>22m - 4 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 1y 10m but less than 5<0x2003>"));
     }
 
     /**
@@ -252,7 +252,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingMonthsAndYearsRange(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>3-5 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 2y 10m but less than 6<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>3 - 5 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 2y 10m but less than 6<0x2003>"));
     }
 
     /**
@@ -260,7 +260,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingNineMonthsAndYearsRange(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>12-14 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 11y 9m but less than 15<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>12 - 14 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 11y 9m but less than 15<0x2003>"));
     }
 
     /**
@@ -268,7 +268,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingTenMonthsAndYearsRange(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>12-15 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 12 but less than 15y 10m<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>12 - 15 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 12 but less than 15y 10m<0x2003>"));
     }
 
    /**
@@ -276,7 +276,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingChildTenMonthsAndYearsRange(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>13-17 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 12y 10m but less than 18<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>13 - 17 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 12y 10m but less than 18<0x2003>"));
     }
 
     /**
@@ -292,7 +292,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testCourseProcessingRemoveDateTabs(): void
     {
-        $this->assertContains("Sun Apr 14 9:30am-5:30pm	<ParaStyle:Course>30000", $this->method->courseProcessing("Sun	Apr 14	9:30am-5:30pm	<ParaStyle:Course>30000"));
+        $this->assertContains("Sun Apr 14	9:30am-5:30pm	<ParaStyle:Course>30000", $this->method->courseProcessing("Sun	Apr 14	9:30am-5:30pm	<ParaStyle:Course>30000"));
     }
 
     /**
@@ -300,7 +300,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testCourseProcessingDuplicateAM(): void
     {
-        $this->assertContains("Sun,Fri,Sat Apr 26 6:30-10:30am	<ParaStyle:Course>29828", $this->method->courseProcessing("Sun,Fri,Sat	Apr 26	6:30am-10:30am	<ParaStyle:Course>29828"));
+        $this->assertContains("Sun,Fri,Sat Apr 26	6:30-10:30am	<ParaStyle:Course>29828", $this->method->courseProcessing("Sun,Fri,Sat	Apr 26	6:30am-10:30am	<ParaStyle:Course>29828"));
     }
     
     /**
@@ -308,7 +308,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testCourseProcessingDuplicatePM(): void
     {
-        $this->assertContains("Sun,Fri,Sat Apr 26 6:30-10:30pm	<ParaStyle:Course>29828", $this->method->courseProcessing("Sun,Fri,Sat	Apr 26	6:30pm-10:30pm	<ParaStyle:Course>29828"));
+        $this->assertContains("Sun,Fri,Sat Apr 26	6:30-10:30pm	<ParaStyle:Course>29828", $this->method->courseProcessing("Sun,Fri,Sat	Apr 26	6:30pm-10:30pm	<ParaStyle:Course>29828"));
     }
     
     /**
@@ -316,7 +316,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testCourseProcessingTopOfHourMinutes(): void
     {
-        $this->assertContains("Sun,Fri,Sat Apr 26 6-10:30pm	<ParaStyle:Course>29828", $this->method->courseProcessing("Sun,Fri,Sat	Apr 26	6:00pm-10:30pm	<ParaStyle:Course>29828"));
+        $this->assertContains("Sun,Fri,Sat Apr 26	6-10:30pm	<ParaStyle:Course>29828", $this->method->courseProcessing("Sun,Fri,Sat	Apr 26	6:00pm-10:30pm	<ParaStyle:Course>29828"));
     }
 
     /**
@@ -324,7 +324,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testCourseProcessingMonToFri(): void
     {
-        $this->assertContains("Mon-Fri Jun 24 9am-6:30pm	<ParaStyle:Course>29830", $this->method->courseProcessing("Mon,Tue,Wed,Thu,Fri	Jun 24	9:00am-6:30pm	<ParaStyle:Course>29830"));
+        $this->assertContains("Mon-Fri Jun 24	9am-6:30pm	<ParaStyle:Course>29830", $this->method->courseProcessing("Mon,Tue,Wed,Thu,Fri	Jun 24	9:00am-6:30pm	<ParaStyle:Course>29830"));
     }
 
     /**
@@ -346,7 +346,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
         $this->assertContains("<ASCII-WIN>", $this->method->renderedOutput());
         
         //Ensures that importData and textProcessing have run and the date fields have been transformed
-        $this->assertContains("Wed Jun 4 10am-12pm	<ParaStyle:Course>40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
+        $this->assertContains("Wed Jun 4	10am-12pm	<ParaStyle:Course>40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
 
         //Ensure that both Arts & Entertainment entries from the two files have merged successfully into the Master Document in this single ActivityType
         $this->assertSame(2, count($this->method->outputObject()['Arts & Entertainment Programs']['55+ Drawing, Sketching & More__106.78']['McConaghy Centre']));
@@ -354,7 +354,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
         
         //Ensures that the course entry from the second file was merged
         //Note: We cannot test the key because the timestamp changes as it adds a year for January since it uses the microseconds from execution time
-        $this->assertContains("Tue Jan 1 1-3pm	<ParaStyle:Course>41783", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Drawing, Sketching & More__106.78']['McConaghy Centre']);
+        $this->assertContains("Tue Jan 1	1-3pm	<ParaStyle:Course>41783", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Drawing, Sketching & More__106.78']['McConaghy Centre']);
 
         //Ensure that both Arts & Entertainment entries from the two files have merged successfully into the Master Document for this ActivityType
         $this->assertSame(2, count($this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']));
@@ -364,7 +364,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
         
         //Ensure that both Arts & Entertainment entries from the two files have merged successfully into the Master Document for this ActivityType
         $this->assertArrayHasKey("1575453600_40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
-        $this->assertContains("Wed Dec 4 10am-12pm	<ParaStyle:Course>40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
+        $this->assertContains("Wed Dec 4	10am-12pm	<ParaStyle:Course>40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
     }
 
 }
