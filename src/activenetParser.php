@@ -471,7 +471,7 @@ final class ActivenetParser {
             }    
         }
         
-        return iconv( "UTF-8", 'Windows-1252//TRANSLIT', $this->output );
+        return iconv( "Windows-1252", 'Windows-1252//TRANSLIT', $this->output );
     }
 }
 ?>
