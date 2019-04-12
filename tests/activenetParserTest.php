@@ -164,9 +164,9 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingLessThanAndHalfYear(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>Under 4.5 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>Less than 4 1/2<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>Under 4½ yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>Less than 4 1/2<0x2003>"));
     }
-
+    
     /**
      * @group Unit
      */
@@ -196,7 +196,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
      */
     public function testAgeProcessingLessThan2(): void
     {
-        $this->assertContains("<ParaStyle:BrochureSubSection>1.5 - 2.5 yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 1 1/2 but less than 2y 6m 4w<0x2003>"));
+        $this->assertContains("<ParaStyle:BrochureSubSection>1½ - 2½ yrs<0x2003>", $this->method->ageProcessing("<ParaStyle:BrochureSubSection>At least 1 1/2 but less than 2y 6m 4w<0x2003>"));
     }
 
     /**

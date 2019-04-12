@@ -293,7 +293,7 @@ final class ActivenetParser {
         $extractedAge =  preg_replace_callback(
             "/(\d+)y (5|6)m 4w/",
             function ($matches) {
-                return intval($matches[1]+1).".5";
+                return intval($matches[1]+1)."½";
             },
             $extractedAge
         );
@@ -308,7 +308,7 @@ final class ActivenetParser {
         $ageReplace = array(
             "",
             "+",
-            ".5",
+            "½",
             "Under "
         );
 
@@ -380,7 +380,7 @@ final class ActivenetParser {
         }
 
         //Add Years Label
-        $yearRange = preg_match( "/(-\d{1,2}$)|(^\d{1,2}[+]$)|(\d{1,2}[.]5$)|(^Under \d{1,2}$)/", $extractedAge, $yearRange);
+        $yearRange = preg_match( "/(-\d{1,2}½$)|(-\d{1,2}$)|(^\d{1,2}[+]$)|(\d{1,2}[.]5$)|(^Under \d{1,2})/", $extractedAge, $yearRange);
         if (!empty($yearRange)) $extractedAge .= " yrs";
 
         //Add spaced dash
@@ -463,14 +463,15 @@ final class ActivenetParser {
                 header('Expires: 0');
                 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
                 header('Cache-Control: private', false);
-                header('Content-Type: application/octet-stream; charset=utf-8);');
+                header('Content-Type: application/octet-stream; charset=Windows-1252);');
                 header('Content-Disposition: attachment; filename="'.time()."_activenet_fixed" . '.txt";');
                 header('Content-Transfer-Encoding: binary');    
             } else {
-                header('Content-Type: text/plain; charset=utf-8);');
+                header('Content-Type: text/plain; charset=Windows-1252);');
             }    
         }
-        return utf8_encode($this->output);
+        
+        return iconv( mb_detect_encoding( $this->output ), 'Windows-1252//TRANSLIT', $this->output );
     }
 }
 ?>
