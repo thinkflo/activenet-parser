@@ -293,7 +293,7 @@ final class ActivenetParser {
         $extractedAge =  preg_replace_callback(
             "/(\d+)y (5|6)m 4w/",
             function ($matches) {
-                return intval($matches[1]+1)."½";
+                return intval($matches[1]+1).".5";
             },
             $extractedAge
         );
@@ -308,7 +308,7 @@ final class ActivenetParser {
         $ageReplace = array(
             "",
             "+",
-            "½",
+            ".5",
             "Under "
         );
 
