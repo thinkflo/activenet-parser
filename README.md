@@ -2,7 +2,7 @@
 
  Processes one or many plain-text Brochure Export files from ActiveNet's Front Desk Web Application and provides a single, clean output in the original export format
 
- Activenet File Parser v1.0.6 
+ Activenet File Parser v1.0.7 
  ----------------------------
  Build: April 12, 2019
 

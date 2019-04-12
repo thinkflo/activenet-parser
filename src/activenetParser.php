@@ -471,7 +471,7 @@ final class ActivenetParser {
             }    
         }
         
-        return iconv( mb_detect_encoding( $this->output ), 'Windows-1252//TRANSLIT', $this->output );
+        return iconv( "UTF-8", 'Windows-1252//TRANSLIT', $this->output );
     }
 }
 ?>
