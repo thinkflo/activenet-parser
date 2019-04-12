@@ -451,7 +451,7 @@ final class ActivenetParser {
                         foreach($site as $key => $course) {
                             $this->output .= "<ParaStyle:Course>\r\n".$course;
                         }
-                        $this->output .= "\r\n\r\n";    
+                        $this->output .= "\r\n<ParaStyle:>\r\n";    
                     }   
                 }
             }
