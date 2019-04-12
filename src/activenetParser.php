@@ -445,7 +445,7 @@ final class ActivenetParser {
                             continue;
                         }
 
-                        $this->output .= "<ParaStyle:site>".$siteTitle."<0x000D>					";
+                        $this->output .= "<ParaStyle:site>".$siteTitle."<0x000D>";
 
                         //Processing for each Course
                         foreach($site as $key => $course) {
