@@ -51,10 +51,18 @@ The package contains the following file structure:
 - activenet/src/activenetParser.php
 - activenet/test/activenetParserTest.php
 
-Move the zip file to your webroot and unzip this package, which will create the activenet directory and contain the file structure above
+Clone this repo
+```
+git clone git@github.com:thinkflo/activenet-parser.git
+```
+
+You can also [download](https://github.com/thinkflo/activenet-parser/archive/master.zip) the master, unzip, and move to your webroot.
 ```
 cd /path/to/webroot;
-unzip activenet.zip;
+wget https://github.com/thinkflo/activenet-parser/archive/master.zip;
+unzip activenet-parser-master.zip;
+mv ./activenet-parser-master/ ./activenet;
+
 ```
 Switch to the activenet directory
 ```
