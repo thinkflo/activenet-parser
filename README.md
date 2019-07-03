@@ -11,7 +11,7 @@
  (Backwards compatible with PHP5.4+)
 
  Author: 
- Hal Wong (hal@thinkflo.com)
+ Hal Wong
 
  Description:
  Processes one or many plain-text Brochure Export files from ActiveNet's Front Desk Web Application 
