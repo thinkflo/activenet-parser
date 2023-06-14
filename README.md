@@ -2,29 +2,29 @@
 
  Processes one or many plain-text Brochure Export files from ActiveNet's Front Desk Web Application and provides a single, clean output in the original export format
 
- Activenet File Parser v1.0.10 
+## Activenet File Parser v1.0.10 
  ----------------------------
  Build: April 12, 2019
 
- Requirements: 
+ ### Requirements: 
  PHP7.1+ (configured with file_uploads=On, magic_quotes_gpc=On), PHPUnit7.3+
  (Backwards compatible with PHP5.4+)
 
- Author: 
+ ### Author: 
  Hal Wong
 
- Description:
+ ### Description:
  Processes one or many plain-text Brochure Export files from ActiveNet's Front Desk Web Application 
  and provides a single, clean output in the original export format.
 
- Purpose: 
+ ### Purpose: 
  The Activenet export files are formatted for InDesign but contain many system-generated 
  fields that requires manual parsing, manipulation and reformatting in order to be fit 
  for publication.  This script automates this work; reformatting Date and Age fields using 
  strict pattern matching, while combining and re-sorting from multiple source files to 
  generated a unified output based in the original InDesign export format.
 
- Workflow Sequence:
+ ### Workflow Sequence:
  - A File Upload Form is displayed when no File Uploads are detected via POST in displayUploadForm
  - When a File Upload is sent via POST to this script, it processes it:
      1) It loops through the $_FILES['documents'] array to handle a single or many attachment(s)
@@ -42,7 +42,7 @@
      6) At this stage, all documents have imported and the report output is generated with renderedOutput
      7) You can also inspect the object of processed output with a method called outputObject
 
-# Installation
+## Installation & Steps to set up the local environment:
 
 The package contains the following file structure:
 
@@ -51,37 +51,38 @@ The package contains the following file structure:
 - activenet/src/activenetParser.php
 - activenet/test/activenetParserTest.php
 
-Clone this repo
-```
-git clone git@github.com:thinkflo/activenet-parser.git
-```
+### 1. Clone this repo:
+	```
+	git clone git@github.com:thinkflo/activenet-parser.git
+	```
 
 You can also [download](https://github.com/thinkflo/activenet-parser/archive/master.zip) the master, unzip, and move to your webroot.
+
 ```
 cd /path/to/webroot;
 wget https://github.com/thinkflo/activenet-parser/archive/master.zip;
 unzip activenet-parser-master.zip;
 mv ./activenet-parser-master/ ./activenet;
-
-```
-Switch to the activenet directory
-```
-cd activenet;
 ```
 
-Ensure Composer is installed.  If not, install it:
-```
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
+### 2. Switch to the activenet directory:
+	```
+	cd activenet
+	```
+
+### 3. Run the Docker command: 
+	``` 
+	docker compose up 
+	``` 
+
+After running this command, the terminal will display a series of log outputs indicating the initialization of the Docker containers. This will look something like this: 
+``` 
+[+] Running 2/0 ... (Output shortened for clarity) activenet-parser-web-1 | 2023/06/14 11:09:28 [notice] 1#1: start worker process 27 
 ```
 
-Go into the activenet directory and install the dependencies (PHPUnit) using Composer 
-```
-php composer.phar install
-```
+### 4. Open a new tab and navigate to http://0.0.0.0/ or http://localhost/
 
+---------------
 Run the Unit and Integration tests to make sure everything passes and that the page is rendering successfully and is operational
 ```
 phpunit --bootstrap vendor/autoload.php tests/activenetParserTest.php
@@ -104,4 +105,3 @@ Now simply visit the url in a web browser: http://yourwebserver.com/activenet
  PHP Command Manifest: 
  explode, list, array, intval, strstr, trim, empty, count, print, is_string, is_array, isset, strlen, utf8_encode
  preg_match, preg_replace_callback, preg_replace, file_exists, file_get_contents, strtotime, header, headers_sent
-
