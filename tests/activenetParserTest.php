@@ -350,7 +350,7 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
 
         //Ensure that both Arts & Entertainment entries from the two files have merged successfully into the Master Document in this single ActivityType
         $this->assertSame(2, count($this->method->outputObject()['Arts & Entertainment Programs']['55+ Drawing, Sketching & More__106.78']['McConaghy Centre']));
-        $this->assertArrayHasKey("1561986000_41783", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Drawing, Sketching & More__106.78']['McConaghy Centre']);
+        $this->assertArrayHasKey(strtotime("July 1 13:00") . "_41783", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Drawing, Sketching & More__106.78']['McConaghy Centre']);
         
         //Ensures that the course entry from the second file was merged
         //Note: We cannot test the key because the timestamp changes as it adds a year for January since it uses the microseconds from execution time
@@ -360,10 +360,10 @@ Tue	Jan 1	1:00pm-3:00pm	<ParaStyle:Course>41783
         $this->assertSame(2, count($this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']));
 
         //Ensure that both Arts & Entertainment entries from the two files have merged successfully into the Master Document for this ActivityType
-        $this->assertArrayHasKey("1559642400_40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
+        $this->assertArrayHasKey(strtotime("June 4 10:00") . "_40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
         
         //Ensure that both Arts & Entertainment entries from the two files have merged successfully into the Master Document for this ActivityType
-        $this->assertArrayHasKey("1575453600_40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
+        $this->assertArrayHasKey(strtotime("December 4 10:00") . "_40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
         $this->assertContains("Wed Dec 4	10am-12pm	<ParaStyle:Course>40215", $this->method->outputObject()['Arts & Entertainment Programs']['55+ Choir__62.88']['McConaghy Centre']);
     }
 
