@@ -85,7 +85,7 @@ After running this command, the terminal will display a series of log outputs in
 ---------------
 Run the Unit and Integration tests to make sure everything passes and that the page is rendering successfully and is operational
 ```
-phpunit --bootstrap vendor/autoload.php tests/activenetParserTest.php
+vendor/phpunit/phpunit/phpunit --bootstrap vendor/autoload.php tests/activenetParserTest.php
 ```
 
 If you see a screen similar to below then you know that the page is operating properly.
