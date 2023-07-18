@@ -142,6 +142,9 @@ final class ActivenetParser {
 
                     //Processing for each Course
                     if (is_array($site)) foreach($site as $siteName => $course) {
+                        if (!is_array($this->processedDocument[$sectionTitle])) $this->processedDocument[$sectionTitle] = [];
+                        if (!is_array($this->processedDocument[$sectionTitle][$activityTypeTitle])) $this->processedDocument[$sectionTitle][$activityTypeTitle] = [];
+                        if (!is_array($this->processedDocument[$sectionTitle][$activityTypeTitle][$siteTitle])) $this->processedDocument[$sectionTitle][$activityTypeTitle][$siteTitle] = [];
                         $this->processedDocument[$sectionTitle][$activityTypeTitle][$siteTitle][$siteName] = $this->courseProcessing($course);
                     }   
                 }
@@ -182,12 +185,12 @@ final class ActivenetParser {
                 continue;
             }
 
-            $this->processSites($ageGroup, $title, $activityTypeTitle."_".$activityAge."_".$extractedPrice, $activityTypeContent);
+            $this->processSites($title, $activityTypeTitle."_".$activityAge."_".$extractedPrice, $activityTypeContent, $ageGroup);
         }
         return $this->processedDocument;
     }
 
-    private function processSites($ageGroup = null, $section, $activityType, $content) {        
+    private function processSites($section, $activityType, $content, $ageGroup = null) {        
         $this->sites = explode("<ParaStyle:site>", $content);
         
         //parse each activityType into Sites
@@ -213,9 +216,9 @@ final class ActivenetParser {
 
             if (strlen($course) > 1) {
                 //Only process Courses if they have a Date structure (eliminates linefeeds, and malformed rows)
-                $foundDate = preg_match("/\t(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[ ]\d?\d\t\d?\d[:]\d\d(a|p)m/", $course, $courseDate);
-                if ($foundDate) {                    
-                    $winterMonths = preg_match("/\t(Jan|Feb|Mar)[ ]\d?\d\t\d?\d[:]\d\d(a|p)m/", $course, $winterMonths);
+                preg_match("/\t(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[ ]\d?\d\t\d?\d[:]\d\d(a|p)m/", $course, $courseDate);
+                if ($courseDate) {                    
+                    preg_match("/\t(Jan|Feb|Mar)[ ]\d?\d\t\d?\d[:]\d\d(a|p)m/", $course, $winterMonths);
                     $courseNumber = explode("<ParaStyle:Course>", $course);
 
                     if ($winterMonths) {
