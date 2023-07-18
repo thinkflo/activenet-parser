@@ -2,13 +2,13 @@
 
  Processes one or many plain-text Brochure Export files from ActiveNet's Front Desk Web Application and provides a single, clean output in the original export format
 
-## Activenet File Parser v1.0.10 
+## Activenet File Parser v1.1.0 
  ----------------------------
  Build: April 12, 2019
+ Updated: July 18, 2023
 
  ### Requirements: 
- PHP7.1+ (configured with file_uploads=On, magic_quotes_gpc=On), PHPUnit7.3+
- (Backwards compatible with PHP5.4+)
+ PHP7.3+ (configured with file_uploads=On, magic_quotes_gpc=On), PHPUnit8.5+
 
  ### Author: 
  Hal Wong
@@ -90,16 +90,16 @@ vendor/phpunit/phpunit/phpunit --bootstrap vendor/autoload.php tests/activenetPa
 
 If you see a screen similar to below then you know that the page is operating properly.
 ```
-PHPUnit 7.3.3 by Sebastian Bergmann and contributors.
+PHPUnit 8.5.33 by Sebastian Bergmann and contributors.
 
 .................................                                 33 / 33 (100%)
 
-Time: 577 ms, Memory: 10.00MB
+Time: 211 ms, Memory: 4.00 MB
 
 OK (33 tests, 41 assertions)
 ```
 
-Now simply visit the url in a web browser: http://yourwebserver.com/activenet
+Now simply visit the url in a web browser: http://localhost
 
 
  PHP Command Manifest: 
