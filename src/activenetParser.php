@@ -8,8 +8,14 @@ final class ActivenetParser {
     private $activityTypes;
     private $sites;
     private $output;
+    private $minimumVersion = "7.3";
 
     public function __construct($quiet = false) {
+        // Check for PHP version compatibility
+        if (version_compare(phpversion(), $this->minimumVersion, '<')) {
+            $this->displayVersionError();
+        }
+
         //Process any Files that were sent to the page via POST
         if (isset($_FILES['documents'])){
             if (is_array(($this->checkFilesUpload()))) {
@@ -24,6 +30,10 @@ final class ActivenetParser {
             //If no files were sent, render the upload form
             if (!$quiet) print $this->displayUploadForm();
         }
+    }
+
+    public function displayVersionError() {
+        die("The minimum version of PHP{$this->minimumVersion}+ was not found and is not compatible with the ActiveNet Parser. Please update your version of PHP and try again.");
     }
 
     public function displayUploadForm() {
