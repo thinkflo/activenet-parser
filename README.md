@@ -2,10 +2,10 @@
 
  Processes one or many plain-text Brochure Export files from ActiveNet's Front Desk Web Application and provides a single, clean output in the original export format
 
-## Activenet File Parser v1.1.0 
+## Activenet File Parser v1.1.1 
  ----------------------------
  Build: April 12, 2019
- Updated: July 18, 2023
+ Updated: September 12, 2023
 
  ### Requirements: 
  PHP7.3+ (configured with file_uploads=On, magic_quotes_gpc=On), PHPUnit8.5+
